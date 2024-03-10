@@ -1,18 +1,49 @@
 #include "Referee.h"
+#include "Move.h"
+#include <vector>
 
 Referee::Referee() {}
 
 Player* Referee::refGame(Player* player1, Player* player2) {
-    char move1 = player1->makeMove();
-    char move2 = player2->makeMove();
+    Move* move1 = player1->makeMove();
+    Move* move2 = player2->makeMove();
 
-    if (move1 == move2)
+    if (move1 == move2) {
+        delete move1;
+        delete move2;
         return nullptr;
+    }
 
-    if ((move1 == 'R' && move2 == 'S') || 
-        (move1 == 'S' && move2 == 'P') ||
-        (move1 == 'P' && move2 == 'R'))
-        return player1;
+    std::vector<std::pair<std::string, std::string>> rules = {
+        {"Rock", "Scissors"},
+        {"Scissors", "Paper"},
+        {"Paper", "Rock"},
+        {"Monkey","Ninja"},
+        {"Monkey","Robot"},
+        {"Robot","Ninja"},
+        {"Robot","Zombie"},
+        {"Pirate","Robot"},
+        {"Pirate","Monkey"},
+        {"Ninja","Pirate"},
+        {"Ninja","Zombie"},
+        {"Zombie","Pirate"},
+        {"Zombie","Monkey"},
+    };
 
-    return player2;
+    for (const auto& rule : rules) {
+        if (move1->getName() == rule.first && move2->getName() == rule.second) {
+            delete move1;
+            delete move2;
+            return player1;
+        }
+        else if (move1->getName() == rule.second && move2->getName() == rule.first) {
+            delete move1;
+            delete move2;
+            return player2;
+        }
+    }
+
+    delete move1;
+    delete move2;
+    return nullptr;
 }
