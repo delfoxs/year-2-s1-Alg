@@ -2,11 +2,11 @@
 #define COMPUTER_H
 
 #include "Player.h"
-using namespace std;
-class Computer : public Player{
-    public:
-    char makeMove () override;
-    string getName() override;
-};
-#endif
 
+class Computer : public Player {
+public:
+    Move* makeMove() override;
+    std::string getName() override;
+};
+
+#endif
