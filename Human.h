@@ -6,11 +6,11 @@
 
 class Human : public Player {
 private:
-    string name;
+    std::string name;
 public:
-    Human(string name = "Human");
-    char makeMove() override;
-    string getName() override;
+    Human(std::string name = "Human");
+    Move* makeMove() override;
+    std::string getName() override;
 };
 
 #endif
