@@ -1,22 +1,31 @@
 #include "Reverser.h"
+#include <string>
 
 int Reverser::reverseDigit(int value) {
-    if (value < 0) return -1; // Invalid input
-    if (value < 10) return value; // Single digit number
-    return reverseDigitHelper(value, 0);
+    if (value < 0) {
+        return -1;
+    } else if (value < 10) {
+        return value;
+    } else {
+        int lastDigit = value % 10;
+        int remainingDigits = value / 10;
+        int reversed = reverseDigit(remainingDigits);
+        return (lastDigit * pow(10, std::to_string(remainingDigits).length())) + reversed;
+    }
 }
 
-std::string Reverser::reverseString(std::string characters) {
-    if (characters.empty()) return ""; // Empty string
-    return reverseStringHelper(characters, 0);
-}
-
-int Reverser::reverseDigitHelper(int value, int reversed) {
-    if (value == 0) return reversed;
-    return reverseDigitHelper(value / 10, reversed * 10 + value % 10);
-}
-
-std::string Reverser::reverseStringHelper(std::string characters, size_t index) {
-    if (index == characters.size()) return "";
-    return reverseStringHelper(characters, index + 1) + characters[index];
+std::string Reverser::reverseString(const std::string& characters) {
+    if (characters.empty()) {
+        return "";
+    } else if (characters.length() == 1) {
+        return characters;
+    } else {
+        char firstChar = characters[0];
+        std::string remainingChars = characters.substr(1);
+        std::string reversedRemainingChars = reverseString(remainingChars);
+        if (reversedRemainingChars == "ERROR") {
+            return "ERROR";
+        }
+        return reversedRemainingChars + firstChar;
+    }
 }
