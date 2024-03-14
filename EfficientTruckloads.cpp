@@ -9,9 +9,11 @@ int EfficientTruckloads::numTrucks(int numCrates, int loadSize) {
         return memo[numCrates];
     }
     
-    int remainingCrates = numCrates - loadSize;
-    int trucksNeeded = numTrucks(remainingCrates, loadSize);
-    int result = trucksNeeded + 1;
+    int remainingCrates1 = (numCrates + 1) / 2;
+    int remainingCrates2 = numCrates / 2;
+    int trucksNeeded1 = numTrucks(remainingCrates1, loadSize);
+    int trucksNeeded2 = numTrucks(remainingCrates2, loadSize);
+    int result = trucksNeeded1 + trucksNeeded2;
     
     memo[numCrates] = result;
     
