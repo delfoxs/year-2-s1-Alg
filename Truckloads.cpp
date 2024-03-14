@@ -1,8 +1,11 @@
-#include "Truckloads.h"
+#include "TruckLoads.h"
 
-int Truckloads::numTrucks(int numCrates, int loadSize) {
-    if (numCrates <= loadSize) return 1;
-    int left = numCrates / 2;
-    int right = numCrates - left;
-    return numTrucks(left, loadSize) + numTrucks(right, loadSize);
+int TruckLoads::numTrucks(int numCrates, int loadSize) {
+    if (numCrates <= loadSize) {
+        return 1;
+    } else {
+        int remainingCrates = numCrates - loadSize;
+        int trucksNeeded = numTrucks(remainingCrates, loadSize);
+        return trucksNeeded + 1;
+    }
 }
