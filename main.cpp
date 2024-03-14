@@ -1,39 +1,18 @@
 #include <iostream>
-#include <vector>
-#include <sstream>
-#include "ReduceMinimum.h"
-#include "ReduceGCD.h"
-
-std::vector<int> parseInput(const std::string& input) {
-    std::vector<int> numbers;
-    std::stringstream ss(input);
-    std::string token;
-    while (getline(ss, token, ',')) {
-        numbers.push_back(std::stoi(token));
-    }
-    return numbers;
-}
-
-std::string formatOutput(int min, int gcd) {
-    return std::to_string(min) + " " + std::to_string(gcd);
-}
+#include "Truckloads.h"
+#include "Reverser.h"
+#include "EfficientTruckloads.h"
 
 int main() {
-    std::string input;
-    std::getline(std::cin, input);
+    Truckloads truckloads;
+    std::cout << "Trucks needed: " << truckloads.numTrucks(14, 3) << std::endl;
 
-    std::vector<int> numbers = parseInput(input);
-    
-    ReduceMinimum reduceMin;
-    ReduceGCD reduceGcd;
-    
-    std::vector<int> transformed = reduceMin.reduce(numbers);
-    std::vector<int> filtered = reduceMin.reduce(transformed);
-    
-    int min = reduceMin.reduce(filtered);
-    int gcd = reduceGcd.reduce(filtered);
-    
-    std::cout << formatOutput(min, gcd) << std::endl;
-    
+    Reverser reverser;
+    std::cout << "Reversed digit: " << reverser.reverseDigit(12345) << std::endl;
+    std::cout << "Reversed string: " << reverser.reverseString("Hello") << std::endl;
+
+    EfficientTruckloads efficientTruckloads;
+    std::cout << "Efficient trucks needed: " << efficientTruckloads.numTrucks(14, 3) << std::endl;
+
     return 0;
 }
