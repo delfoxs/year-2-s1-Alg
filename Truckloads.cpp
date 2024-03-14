@@ -4,8 +4,7 @@ int Truckloads::numTrucks(int numCrates, int loadSize) {
     if (numCrates <= loadSize) {
         return 1;
     } else {
-        int remainingCrates = numCrates - loadSize;
-        int trucksNeeded = numTrucks(remainingCrates, loadSize);
-        return trucksNeeded + 1;
+        int trucksNeeded = numTrucks((numCrates + loadSize - 1) / 2, loadSize);
+        return 2 * trucksNeeded;
     }
 }
