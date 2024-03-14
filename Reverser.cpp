@@ -1,4 +1,7 @@
+
 #include "Reverser.h"
+#include <cmath> 
+#include <string>
 
 int Reverser::reverseDigit(int value) {
     if (value < 0) {
