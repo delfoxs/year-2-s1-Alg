@@ -1,6 +1,6 @@
-#include "EfficientTruckLoads.h"
+#include "EfficientTruckloads.h"
 
-int EfficientTruckLoads::numTrucks(int numCrates, int loadSize) {
+int EfficientTruckloads::numTrucks(int numCrates, int loadSize) {
     if (numCrates <= loadSize) {
         return 1;
     }
