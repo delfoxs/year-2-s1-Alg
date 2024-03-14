@@ -1,20 +1,39 @@
-#include "Human.h"
-#include "Computer.h"
-#include "Referee.h"
 #include <iostream>
+#include <vector>
+#include <sstream>
+#include "ReduceMinimum.h"
+#include "ReduceGCD.h"
+
+std::vector<int> parseInput(const std::string& input) {
+    std::vector<int> numbers;
+    std::stringstream ss(input);
+    std::string token;
+    while (getline(ss, token, ',')) {
+        numbers.push_back(std::stoi(token));
+    }
+    return numbers;
+}
+
+std::string formatOutput(int min, int gcd) {
+    return std::to_string(min) + " " + std::to_string(gcd);
+}
 
 int main() {
-    Human humanPlayer("Mei");
-    Computer computerPlayer;
+    std::string input;
+    std::getline(std::cin, input);
 
-    Referee referee;
-
-    Player* winner = referee.refGame(&humanPlayer, &computerPlayer);
-
-    if (winner == nullptr)
-        std::cout << "It's a Tie\n";
-    else
-        std::cout << winner->getName() << " Wins\n";
-
+    std::vector<int> numbers = parseInput(input);
+    
+    ReduceMinimum reduceMin;
+    ReduceGCD reduceGcd;
+    
+    std::vector<int> transformed = reduceMin.reduce(numbers);
+    std::vector<int> filtered = reduceMin.reduce(transformed);
+    
+    int min = reduceMin.reduce(filtered);
+    int gcd = reduceGcd.reduce(filtered);
+    
+    std::cout << formatOutput(min, gcd) << std::endl;
+    
     return 0;
 }
