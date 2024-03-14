@@ -1,4 +1,3 @@
-
 #include "Reverser.h"
 #include <cmath> 
 #include <string>
