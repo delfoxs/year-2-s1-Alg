@@ -5,9 +5,9 @@
 
 class EfficientTruckloads {
 private:
-    std::unordered_map<int, int> memo;
+    std::unordered_map<std::pair<int, int>, int> memo;
 public:
     int numTrucks(int numCrates, int loadSize);
 };
 
-#endif 
+#endif
