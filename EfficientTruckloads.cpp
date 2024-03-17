@@ -5,7 +5,7 @@ int EfficientTruckloads::numTrucks(int numCrates, int loadSize) {
         return 1;
     }
     
-    if (memo.find({numCrates, loadSize}) != memo.end()) { // Check memoization based on both numCrates and loadSize
+    if (memo.find({numCrates, loadSize}) != memo.end()) {
         return memo[{numCrates, loadSize}];
     }
     
